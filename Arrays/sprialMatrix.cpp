@@ -56,3 +56,32 @@ int top = 0;
         return result;
     }
 };
+
+int main() {
+    Solution solution;
+    vector<vector<int>> matrix = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    vector<int> result = solution.spiralOrder(matrix);
+
+    cout << "Spiral Order: ";
+    for (int num : result) {
+        cout << num << " ";
+    }
+    cout << endl;
+
+    return 0;
+};
+
+// Example Input:
+// matrix = [
+//     [1, 2, 3],
+//     [4, 5, 6],
+//     [7, 8, 9]
+// ]
+// Expected Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+
+
