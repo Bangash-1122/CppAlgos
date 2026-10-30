@@ -29,3 +29,30 @@ int top = 0;
                 result.push_back(matrix[top][col]);
             }
             top++;
+
+ // Traverse from top to bottom
+            for (int row = top; row <= bottom; ++row) {
+                result.push_back(matrix[row][right]);
+            }
+            right--;
+
+            if (top <= bottom) {
+                // Traverse from right to left
+                for (int col = right; col >= left; --col) {
+                    result.push_back(matrix[bottom][col]);
+                }
+                bottom--;
+            }
+
+            if (left <= right) {
+                // Traverse from bottom to top
+                for (int row = bottom; row >= top; --row) {
+                    result.push_back(matrix[row][left]);
+                }
+                left++;
+            }
+        }
+
+        return result;
+    }
+};
