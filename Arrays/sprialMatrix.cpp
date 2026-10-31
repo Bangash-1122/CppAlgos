@@ -6,7 +6,6 @@
 
 #include <iostream>
 #include <vector>
-
 using namespace std;
 
 class Solution {
@@ -14,46 +13,54 @@ public:
     vector<int> spiralOrder(vector<vector<int>>& matrix) {
         vector<int> result;
 
+        // Handle an empty matrix
         if (matrix.empty()) {
             return result;
         }
 
-int top = 0;
-        int bottom = static_cast<int>(matrix.size()) - 1;
+        // Initialize four boundaries
+        int top = 0;
+        int bottom = matrix.size() - 1;
         int left = 0;
-        int right = static_cast<int>(matrix[0].size()) - 1;
+        int right = matrix[0].size() - 1;
 
+        // Continue until all boundaries are crossed
         while (top <= bottom && left <= right) {
-            // Traverse from left to right
+
+            // Step 1: Traverse from LEFT to RIGHT
+            // Process the top row
             for (int col = left; col <= right; ++col) {
                 result.push_back(matrix[top][col]);
             }
-            top++;
+            top++; // Move top boundary downward
 
- // Traverse from top to bottom
+            // Step 2: Traverse from TOP to BOTTOM
+            // Process the rightmost column
             for (int row = top; row <= bottom; ++row) {
                 result.push_back(matrix[row][right]);
             }
-            right--;
+            right--; // Move right boundary leftward
 
+            // Step 3: Traverse from RIGHT to LEFT
+            // Process the bottom row if it still exists
             if (top <= bottom) {
-                // Traverse from right to left
                 for (int col = right; col >= left; --col) {
                     result.push_back(matrix[bottom][col]);
                 }
-                bottom--;
+                bottom--; // Move bottom boundary upward
             }
 
+            // Step 4: Traverse from BOTTOM to TOP
+            // Process the leftmost column if it still exists
             if (left <= right) {
-                // Traverse from bottom to top
                 for (int row = bottom; row >= top; --row) {
                     result.push_back(matrix[row][left]);
                 }
-                left++;
+                left++; // Move left boundary rightward
             }
         }
 
-        return result;
+        return result; // Return elements in spiral order
     }
 };
 
@@ -83,5 +90,3 @@ int main() {
 //     [7, 8, 9]
 // ]
 // Expected Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
-
-
