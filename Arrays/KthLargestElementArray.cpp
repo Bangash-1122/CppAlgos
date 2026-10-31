@@ -9,24 +9,33 @@
 
 #include <iostream>
 #include <vector>
-
+#include <queue>
+#include <functional>
 using namespace std;
 
 class Solution {
 public:
     int findKthLargest(vector<int>& nums, int k) {
+
         // Create a min heap
         priority_queue<int, vector<int>, greater<int>> min_heap;
-        // Return the kth largest element
+
+        // Traverse all elements
         for (int num : nums) {
             min_heap.push(num);
+
+            // Keep only the k largest elements
             if (min_heap.size() > k) {
                 min_heap.pop();
             }
         }
+
+        // The smallest element in the heap
+        // is the kth largest element in the array
         return min_heap.top();
     }
 };
+
 
 int main() {
     Solution solution;
