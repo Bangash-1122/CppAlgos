@@ -6,3 +6,18 @@
 // input: nums = [3,2,1,5,6,4], k = 2
 // output: 5
 // *****
+
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        // Create a min heap
+        priority_queue<int, vector<int>, greater<int>> minheap;
+        // Return the kth largest element
+       
+    }
+};
