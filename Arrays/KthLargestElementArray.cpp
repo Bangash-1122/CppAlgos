@@ -44,4 +44,16 @@ int main() {
     int result = solution.findKthLargest(nums, k);
     cout << "The " << k << "th largest element is: " << result << endl; // Output: 5
     return 0;
-}
+};
+
+
+// 5. Final Complexity Summary
+// Complexity	Result
+// Time Complexity	O(n log k)
+// Space Complexity	O(k)
+// Algorithm	Min Heap
+// Sorting Required	No
+
+// Interview explanation:
+
+// "I use a min heap of size k to maintain the k largest elements. For every element, I insert it into the heap and remove the smallest if the heap size exceeds k. At the end, the heap's top element is the kth largest. The time complexity is O(n log k), and the space complexity is O(k)."
