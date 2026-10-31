@@ -90,3 +90,56 @@ int main() {
 //     [7, 8, 9]
 // ]
 // Expected Output: [1, 2, 3, 6, 9, 8, 7, 4, 5]
+
+// The four boundaries (top, bottom, left, right) move inward after completing each direction.
+
+// The two if conditions prevent the algorithm from visiting elements twice when only one row or column remains.
+// 3. Time Complexity — O(m × n)
+// Let:
+// - m = number of rows
+// - n = number of columns
+// Time complexity:
+// \[
+// \boxed{O(m \times n)}
+// \]
+
+// Explanation:
+// 1. The algorithm visits each matrix element exactly once.
+// 2. Every element is added to the result vector once.
+// 3. The four loops collectively process all m × n elements.
+// For example, a matrix with 3 rows and 4 columns contains:
+// \[
+// 3 \times 4 = 12 \text{ elements}
+// \]
+
+// The algorithm processes 12 elements.
+
+// Therefore, time complexity is O(m × n).
+// 4. Space Complexity — O(m × n)
+// Space complexity:
+// \[
+// \boxed{O(m \times n)}
+// \]
+
+// Explanation:
+// - The result vector stores all m × n matrix elements.
+// - The four boundary variables (top, bottom, left, right) require only constant space.
+// - No additional matrix is created.
+// Thus:
+// Memory usage	Complexity
+// Result vector	O(m × n)
+// Four boundary variables	O(1)
+// Auxiliary space excluding output	O(1)
+// Total space including output	O(m × n)
+
+// 5. Final Complexity Summary
+// Complexity	Result
+// Time	O(m × n)
+// Space	O(m × n)
+// Auxiliary Space	O(1)
+// Approach	Four Boundaries / Simulation
+// Traversal	Clockwise Spiral
+
+// Interview explanation:
+
+// "The algorithm uses four boundaries to traverse the matrix clockwise. After each traversal, the corresponding boundary moves inward. Each element is visited exactly once, giving O(m × n) time complexity. The result vector stores all elements, so total space complexity is O(m × n), while auxiliary space is O(1)."
