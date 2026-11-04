@@ -29,3 +29,21 @@ public:
         return {};
     }
 };
+
+int main() {
+    Solution solution;
+    vector<int> nums = {2, 7, 11, 15};
+    int target = 9;
+    vector<int> result = solution.twoSum(nums, target);
+
+    cout << "Indices of the two numbers that add up to " << target << ": ";
+    for (int index : result) {
+        cout << index << " ";
+    }
+    cout << endl;
+
+    return 0;
+};
+
+// Output:
+// Indices of the two numbers that add up to 9: 0 1
