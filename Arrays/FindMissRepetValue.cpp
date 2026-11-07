@@ -53,6 +53,18 @@ public:
             }
         }
 
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < n; ++j) {
+                if(grid[i][j] == first) {
+                    return {first, second};
+                }
+            }
+        }
+        return {first, second};
+    }
+};
+
+
 int main() {
 
     return 0;
