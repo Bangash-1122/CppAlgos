@@ -34,6 +34,16 @@ public:
         }
         int mask = xorAll & -xorAll; // Get the rightmost set bit
 
+        int first = 0, second = 0;
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < n; ++j) {
+                if(grid[i][j] & mask) {
+                    first ^= grid[i][j];
+                } else {
+                    second ^= grid[i][j];
+                }
+            }
+        }
 int main() {
 
     return 0;
