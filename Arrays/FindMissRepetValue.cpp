@@ -21,6 +21,12 @@ public:
         int total_elements = n * n;
         int xorAll = 0;
 
+        // Count occurrences of each number in the grid
+        for(int i = 0; i < n; ++i) {
+            for(int j = 0; j < n; ++j) {
+                xorAll ^= grid[i][j];
+            }
+        }
 
 int main() {
 
