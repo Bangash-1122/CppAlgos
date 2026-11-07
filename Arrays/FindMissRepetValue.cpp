@@ -28,6 +28,12 @@ public:
             }
         }
 
+        // Identify the repeated and missing numbers
+        for(int i = 1; i <= total_elements; ++i) {
+            xorAll ^= i;
+        }
+        int mask = xorAll & -xorAll; // Get the rightmost set bit
+
 int main() {
 
     return 0;
