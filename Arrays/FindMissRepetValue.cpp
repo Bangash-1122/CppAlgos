@@ -16,28 +16,35 @@ using namespace std;
 
 class Solution {
 public:
-    vector<int> findMissingAndRepeated(vector<vector<int>>& grid) {
+    vector<int> findMissingAndRepeatedValues(vector<vector<int>>& grid) {
         int n = grid.size();
         int total_elements = n * n;
         int xorAll = 0;
 
-        // Count occurrences of each number in the grid
-        for(int i = 0; i < n; ++i) {
-            for(int j = 0; j < n; ++j) {
+        // Step 1: XOR all elements of the grid
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
                 xorAll ^= grid[i][j];
             }
         }
 
-        // Identify the repeated and missing numbers
-        for(int i = 1; i <= total_elements; ++i) {
+        // Step 2: XOR numbers from 1 to n*n
+        // Result = repeated ^ missing
+        for (int i = 1; i <= total_elements; ++i) {
             xorAll ^= i;
         }
-        int mask = xorAll & -xorAll; // Get the rightmost set bit
+
+        // Step 3: Find the rightmost set bit
+        // to separate the two numbers
+        int mask = xorAll & -xorAll;
 
         int first = 0, second = 0;
-        for(int i = 0; i < n; ++i) {
-            for(int j = 0; j < n; ++j) {
-                if(grid[i][j] & mask) {
+
+        // Step 4: Divide grid elements into two groups
+        // based on the set bit and XOR them
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (grid[i][j] & mask) {
                     first ^= grid[i][j];
                 } else {
                     second ^= grid[i][j];
@@ -45,27 +52,82 @@ public:
             }
         }
 
+        // Step 5: XOR numbers from 1 to n*n
+        // using the same two groups
         for (int i = 1; i <= total_elements; ++i) {
-            if((i & mask) == 1) {
+            if (i & mask) {
                 first ^= i;
             } else {
                 second ^= i;
             }
         }
 
-        for(int i = 0; i < n; ++i) {
-            for(int j = 0; j < n; ++j) {
-                if(grid[i][j] == first) {
+        // Step 6: Check which number is repeated
+        for (int i = 0; i < n; ++i) {
+            for (int j = 0; j < n; ++j) {
+                if (grid[i][j] == first) {
                     return {first, second};
                 }
             }
         }
-        return {first, second};
+
+        // If first is missing, second is repeated
+        return {second, first};
     }
 };
 
 
 int main() {
-
+    Solution solution;
+    vector<vector<int>> grid = {{1, 2}, {2, 4}};
+    vector<int> result = solution.findMissingAndRepeatedValues(grid);
+    cout << "[" << result[0] << ", " << result[1] << "]" << endl; // Output: [2, 3]
     return 0;
 }
+
+
+// Example Dry Run
+// Input: grid = [[1,2],[2,4]]
+// 1
+// Present
+
+// 2
+// Repeated
+
+// 2
+// Repeated
+
+// 4
+// Present
+
+
+// Missing number: 3
+// Output: [2, 3]
+
+
+// Time Complexity: \(O(n^2)\)
+// - Traversing the grid to calculate XOR takes \(O(n^2)\).
+// - XOR of numbers from 1 to n*n takes \(O(n^2)\).
+// - Dividing elements into two groups takes \(O(n^2)\).
+// - Finding the repeated number takes \(O(n^2)\).
+// Therefore:
+// \[
+// \boxed{O(n^2)}
+// \]
+
+// Space Complexity: \(O(1)\)
+// We use only a few integer variables:
+
+// n, total_elements, xorAll, mask, first, second.
+
+// No additional array or data structure is used.
+
+// Therefore:
+// \[
+// \boxed{O(1)}
+// \]
+
+// Final Complexity:
+// - Time: \(O(n^2)\)
+// - Auxiliary Space: \(O(1)\)
+// This solution uses XOR bit manipulation and is suitable for LeetCode Problem 2965.
