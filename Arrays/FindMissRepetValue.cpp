@@ -14,6 +14,13 @@
 
 using namespace std;
 
+class Solution {
+public:
+    vector<int> findMissingAndRepeated(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int total_elements = n * n;
+        int xorAll = 0;
+
 
 int main() {
 
