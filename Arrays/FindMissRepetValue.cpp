@@ -44,6 +44,15 @@ public:
                 }
             }
         }
+
+        for (int i = 1; i <= total_elements; ++i) {
+            if((i & mask) == 1) {
+                first ^= i;
+            } else {
+                second ^= i;
+            }
+        }
+
 int main() {
 
     return 0;
