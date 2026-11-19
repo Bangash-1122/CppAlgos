@@ -6,8 +6,20 @@ using namespace std;
 int recBinarySearch(const vector<int>& arr, int target, int st, int end) {
     if (st <= end) {
         int mid = st + (end - st) / 2;
-        return -1;
+
+        if(target > arr[mid]) {  //2nd half
+            return recBinarySearch(arr, target, mid + 1, end);
+        }
+        else if(target < arr[mid]) {  //1st half
+            return recBinarySearch(arr, target, st, mid - 1);
+        }
+        else {
+            return mid; // Element found
+        }
+
     }
+
+    return -1; // Element not found
 }
 
 
