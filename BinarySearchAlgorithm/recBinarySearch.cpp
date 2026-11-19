@@ -3,6 +3,13 @@
 
 using namespace std;
 
+int recBinarySearch(const vector<int>& arr, int target, int st, int end) {
+    if (st <= end) {
+        int mid = st + (end - st) / 2;
+        return -1;
+    }
+}
+
 
 int main() {
    vector<int> arr1 = {-1, 0, 3, 4, 5, 9, 12}; // Odd
