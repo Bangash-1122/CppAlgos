@@ -1,38 +1,65 @@
+
 #include <iostream>
 #include <vector>
 
 using namespace std;
 
+// Recursive Binary Search
 int recBinarySearch(const vector<int>& arr, int target, int st, int end) {
+
+    // Check if the search range is valid
     if (st <= end) {
+
+        // Find the middle index
         int mid = st + (end - st) / 2;
 
-        if(target > arr[mid]) {  //2nd half
+        // Search in the second (right) half
+        if (target > arr[mid]) {
             return recBinarySearch(arr, target, mid + 1, end);
         }
-        else if(target < arr[mid]) {  //1st half
+
+        // Search in the first (left) half
+        else if (target < arr[mid]) {
             return recBinarySearch(arr, target, st, mid - 1);
         }
-        else {
-            return mid; // Element found
-        }
 
+        // Target found
+        else {
+            return mid;
+        }
     }
 
-    return -1; // Element not found
+    // Target not found
+    return -1;
 }
-
 
 int main() {
-   vector<int> arr1 = {-1, 0, 3, 4, 5, 9, 12}; // Odd
-    int target = 12;
-    int result1 = recBinarySearch(arr1, target, 0, arr1.size() - 1);
-    cout << "Element found at index: " << result1 << endl;
 
-    vector<int> arr2 = {-1, 0, 3, 4, 5, 9, 12}; // Even
-    int target2 = 0;
-    int result2 = recBinarySearch(arr2, target2, 0, arr2.size() - 1);
-    cout << "Element found at index: " << result2 << endl;
-  
-  return 0;
+    // Test Case 1: Odd-sized array
+    vector<int> arr1 = {-1, 0, 3, 4, 5, 9, 12};
+    int tar1 = 12;
+
+    cout << recBinarySearch(arr1, tar1, 0, arr1.size() - 1) << endl;
+
+    // Test Case 2: Even-sized array
+    vector<int> arr2 = {-1, 0, 3, 4, 5, 9};
+    int tar2 = 0;
+
+    cout << recBinarySearch(arr2, tar2, 0, arr2.size() - 1) << endl;
+
+    return 0;
 }
+
+/*
+Output:
+6
+1
+
+Time Complexity:
+Best Case:    O(1)
+Average Case: O(log n)
+Worst Case:   O(log n)
+
+Space Complexity:
+O(log n) - Recursive call stack
+*/
