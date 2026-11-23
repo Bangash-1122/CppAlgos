@@ -8,49 +8,74 @@
 // You must write an algorithm with O(log n) runtime complexity.
 // ****
 
-
 #include <iostream>
 #include <vector>
-#include <algorithm>
+
 
 using namespace std;
 
 class Solution {
 public:
     int search(vector<int>& nums, int target) {
+        // st = left boundary, end = right boundary
         int st = 0, end = nums.size() - 1;
 
+        // Binary search loop, runs until search space is empty
         while (st <= end) {
+            // Find middle index
+            // Using st + (end - st) / 2 avoids integer overflow
             int mid = st + (end - st) / 2;
+
+            // Case 1: target found at mid
             if (nums[mid] == target) return mid;
 
+            // Check if left half [st ... mid] is sorted
+            // In a rotated array, at least one half is always sorted
             if (nums[st] <= nums[mid]) {
+                // Left half is sorted
+
+                // If target lies inside the sorted left half,
+                // search only in left half
                 if (target >= nums[st] && target < nums[mid]) {
                     end = mid - 1;
-                } else {
+                }
+                // Else target must be in right half
+                else {
                     st = mid + 1;
                 }
-            } else {
+            }
+            // Else right half [mid ... end] must be sorted
+            else {
+                // If target lies inside the sorted right half,
+                // search only in right half
                 if (target > nums[mid] && target <= nums[end]) {
                     st = mid + 1;
-                } else {
+                }
+                // Else target must be in left half
+                else {
                     end = mid - 1;
                 }
             }
         }
+
+        // Target not found in whole array
         return -1;
     }
-}
+};
 
-int main (){
+int main() {
     Solution solution;
+
     vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
     int target = 0;
+
     int result = solution.search(nums, target);
-    cout << "Index of target: " << result << endl;
+    cout << "Index of target: " << result << endl; // Output: 4
+
+    // More tests:
+    // cout << solution.search(nums, 3) << endl; // -1, not present
+    // cout << solution.search(nums, 4) << endl; // 0
+    // cout << solution.search(nums, 7) << endl; // 3
 
     return 0;
 }
-
-// Output: Index of target: 4
-    
