@@ -23,5 +23,12 @@ public:
         while (st <= end) {
             int mid = st + (end - st) / 2;
             if (nums[mid] == target) return mid;
+            
+             if (nums[st] <= nums[mid]) {
+                if (target >= nums[st] && target < nums[mid]) {
+                    end = mid - 1;
+                } else {
+                    st = mid + 1;
+                }
 
     }
