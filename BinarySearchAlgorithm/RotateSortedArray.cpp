@@ -42,4 +42,15 @@ public:
     }
 }
 
+int main (){
+    Solution solution;
+    vector<int> nums = {4, 5, 6, 7, 0, 1, 2};
+    int target = 0;
+    int result = solution.search(nums, target);
+    cout << "Index of target: " << result << endl;
+
+    return 0;
+}
+
+// Output: Index of target: 4
     
