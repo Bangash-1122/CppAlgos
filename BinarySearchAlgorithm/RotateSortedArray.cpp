@@ -29,6 +29,17 @@ public:
                     end = mid - 1;
                 } else {
                     st = mid + 1;
+                } else {
+                if (target > nums[mid] && target <= nums[end]) {
+                    st = mid + 1;
+                } else {
+                    end = mid - 1;
                 }
+            }
+        }
+        return -1;
+    }
+}
+
 
     }
