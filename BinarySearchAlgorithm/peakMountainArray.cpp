@@ -32,3 +32,11 @@ class Solution {
         }
 };
 
+int main() {
+    Solution solution;
+    vector<int> arr = {0, 3, 8, 9, 5, 2};
+    cout << solution.peakIndexInMountainArray(arr) << endl;
+    return 0;
+}
+
+// Output // 3
